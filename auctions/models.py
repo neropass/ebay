@@ -14,10 +14,11 @@ class Listing(models.Model):
 
 class Bid(models.Model):
     listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
-    current_bid = models.IntegerField()
+    bid_amount = models.IntegerField()
     bidder = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bid')
 
-class Comments(models.Model):
-    bid = models.ForeignKey(Bid, on_delete=models.CASCADE, related_name='comments')
+class Comment(models.Model):
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name='comments')
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
     text = models.TextField(max_length=1024)
+    created_at = models.DateTimeField(auto_now_add=True)
