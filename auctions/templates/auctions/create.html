@@ -8,11 +8,11 @@
         <div>{{ message }}</div>
     {% endif %}
 
-    <form action="{% url 'login' %}" method="post">
+    <form action="{% url 'create' %}" method="post">
         {% csrf_token %}
         <div class="form-group">
           <lable>Name of the Listing:</lable>
-          <input autofocus class="form-control" type="text" name="username" placeholder="Title" required>
+          <input autofocus class="form-control" type="text" name="title" placeholder="Title" required>
         </div>
         <div class="form-group">
           <lable>Description:</lable>
@@ -24,7 +24,7 @@
         </div>
         <div class="form-group">
           <lable>Image URL:</lable>
-          <input class="form-control" type="text" name="image_url" placeholder="Image URL">
+          <input class="form-control" type="url" name="img_url" placeholder="Image URL">
         </div>
         <input class="btn btn-primary" type="submit" value="Create">
     </form>
