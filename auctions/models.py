@@ -5,20 +5,19 @@ from django.db import models
 class User(AbstractUser):
     pass
 
-class Auction(models.Model):
+class Listing(models.Model):
     title = models.CharField(max_length=64)
     description = models.TextField(max_length=1024)
     starting_bid = models.IntegerField()
     img_url = models.URLField(max_length=1024)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owned_listing')
 
-class Bids(models.Model):
-    title = models.ForeignKey(Auction, on_delete=models.CASCADE)
-    starting_bid = models.ForeignKey(Auction, on_delete=models.CASCADE)
+class Bid(models.Model):
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
     current_bid = models.IntegerField()
-    bidder = models.ForeignKey(User, on_delete=models.CASCADE)
+    bidder = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bid')
 
 class Comments(models.Model):
-    bid_id = models.ForeignKey(Bids, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    bid = models.ForeignKey(Bid, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
     text = models.TextField(max_length=1024)
