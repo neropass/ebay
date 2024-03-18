@@ -3,5 +3,18 @@
 {% block body %}
     <h2>Active Listings</h2>
 
-    TODO
+    <div class="row" style="height: 100vh;">
+        {% for  listing in listings %}
+            <div class="col-6 h-30">
+                {% comment %} <a href="{% url 'detail' listing.id %}">{{ listing.title }}</a> {% endcomment %}
+                <h3>{{ listing.title }}</h3>
+                <p>{{ listing.description }}</p>
+                <p>{{ listing.starting_bid }}$</p>
+                <div style="height: 300px">
+                    <img src="{{ listing.img_url }}" class="img-fluid h-100">
+                </div>
+                <p>Owner: {{ listing.owner }}</p>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
