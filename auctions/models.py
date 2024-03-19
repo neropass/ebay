@@ -11,6 +11,7 @@ class Listing(models.Model):
     starting_bid = models.IntegerField()
     img_url = models.URLField(max_length=1024)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owned_listing')
+    created_at = models.DateTimeField(auto_now_add=True)
 
 class Bid(models.Model):
     listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
