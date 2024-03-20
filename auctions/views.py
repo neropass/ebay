@@ -75,3 +75,8 @@ def create(request):
         # change render to redirect to created listing
         return render(request, "auctions/index.html")
     return render(request, "auctions/create.html")
+
+def detail(request, id):
+    return render(request, "auctions/detail.html", {
+        "listing": Listing.objects.get(id=id)
+    })

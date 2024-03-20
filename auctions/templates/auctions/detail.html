@@ -1,0 +1,25 @@
+{% extends "auctions/layout.html" %} {% block body %}
+<div class="container text-center">
+  <div class="row justify-content-center">
+    <h2 class="col-4">Active Listings</h2>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 m-3 border rounded">
+      <h3>{{ listing.title }}</h3>
+      <p class="fs-2">{{ listing.description }}</p>
+      <p>Price: ${{ listing.starting_bid }}</p>
+      <div style="height: 300px">
+        <img src="{{ listing.img_url }}" class="img-fluid h-100" />
+      </div>
+      <p>Price: <strong>${{ listing.starting_bid }}</strong></p>
+      <form>
+        <input type="number">
+      </form>
+      <p>Owner: {{ listing.owner }}</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

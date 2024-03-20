@@ -11,8 +11,7 @@
         <div class="row" style="height: 100vh;">
             {% for  listing in listings %}
                 <div class="col-12 h-30 m-3 border rounded">
-                    {% comment %} <a href="{% url 'detail' listing.id %}">{{ listing.title }}</a> {% endcomment %}
-                    <h3>{{ listing.title }}</h3>
+                    <a href="{% url 'detail' listing.id %}">{{ listing.title }}</a>
                     <p>{{ listing.description }}</p>
                     <p>Price: ${{ listing.starting_bid }}</p>
                     <div style="height: 300px">
