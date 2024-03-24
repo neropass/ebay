@@ -10,13 +10,14 @@
     <div class="col-12 m-3 border rounded">
       <h3>{{ listing.title }}</h3>
       <p class="fs-2">{{ listing.description }}</p>
-      <p>Price: ${{ listing.starting_bid }}</p>
       <div style="height: 300px">
         <img src="{{ listing.img_url }}" class="img-fluid h-100" />
       </div>
-      <p>Price: <strong>${{ listing.starting_bid }}</strong></p>
+      <p class="mt-2">Price: <strong>${{ listing.starting_bid }}</strong></p>
       <form>
-        <input type="number">
+        {% csrf_token %}
+        <input type="number" placeholder="Next bid" id="nextBidInput" required />
+        <input class="btn btn-primary" type="submit" value="Place Bid">
       </form>
       <p>Owner: {{ listing.owner }}</p>
     </div>
