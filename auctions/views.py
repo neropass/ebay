@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from .models import User, Listing, Bid, Comment
@@ -73,7 +73,8 @@ def create(request):
         owner = request.user
         new_listing = Listing.objects.create(title=title, description=description, starting_bid=start_bid, img_url=img_url, owner=owner)
         # change render to redirect to created listing
-        return render(request, "auctions/index.html")
+        #return render(request, "auctions/index.html")
+        return redirect(reverse("detail", args=[new_listing.id]))
     return render(request, "auctions/create.html")
 
 def detail(request, id):
